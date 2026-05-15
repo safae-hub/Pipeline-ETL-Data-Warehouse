@@ -1,0 +1,21 @@
+code_ville,nom_ville_standard,province,region_admin,zone_geo,population,code_postal
+TNG,Tanger,Tanger-Assilah,Tanger-Tetouan-Al Hoceima,Nord,1125000,90000
+TTA,Tetouan,Tetouan,Tanger-Tetouan-Al Hoceima,Nord,380000,93000
+HOC,Al Hoceima,Al Hoceima,Tanger-Tetouan-Al Hoceima,Nord,175000,32000
+RBT,Rabat,Rabat,Rabat-Sale-Kenitra,Centre,572000,10000
+SLA,Sale,Sale,Rabat-Sale-Kenitra,Centre,890000,11000
+KEN,Kenitra,Kenitra,Rabat-Sale-Kenitra,Centre,431000,14000
+CASA,Casablanca,Casablanca,Casablanca-Settat,Centre,3710000,20000
+SETT,Settat,Settat,Casablanca-Settat,Centre,142000,26000
+BER,Berrechid,Berrechid,Casablanca-Settat,Centre,136000,27100
+MRK,Marrakech,Marrakech,Marrakech-Safi,Sud,928000,40000
+SAFI,Safi,Safi,Marrakech-Safi,Sud,308000,46000
+FES,Fes,Fes,Fes-Meknes,Nord,1120000,30000
+MEK,Meknes,Meknes,Fes-Meknes,Nord,632000,50000
+AGD,Agadir,Agadir-Ida Ou Tanane,Souss-Massa,Sud,924000,80000
+TAR,Taroudant,Taroudant,Souss-Massa,Sud,149000,83000
+OUJ,Oujda,Oujda-Angad,Oriental,Est,494000,60000
+NAD,Nador,Nador,Oriental,Est,161000,62000
+TIZ,Tiznit,Tiznit,Souss-Massa,Sud,93000,85000
+KHE,Khemisset,Khemisset,Rabat-Sale-Kenitra,Centre,131000,15000
+ERR,Errachidia,Errachidia,Draa-Tafilalet,Sud,92000,52000

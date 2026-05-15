@@ -1,0 +1,87 @@
+2026-05-16 00:15:46,983 — INFO — ============================================================
+2026-05-16 00:15:46,983 — INFO — DEMARRAGE PIPELINE ETL MEXORA
+2026-05-16 00:15:46,983 — INFO — ============================================================
+2026-05-16 00:15:46,983 — INFO — --- PHASE EXTRACT ---
+2026-05-16 00:15:47,238 — INFO — [EXTRACT] Commandes : 50009 lignes extraites depuis C:\Users\Lenovo\Desktop\zili 1\safae\safae\mexora_etl\..\data\commandes_mexora.csv
+2026-05-16 00:15:47,243 — INFO — [EXTRACT] Produits : 48 lignes extraites depuis C:\Users\Lenovo\Desktop\zili 1\safae\safae\mexora_etl\..\data\produits_mexora.json
+2026-05-16 00:15:47,260 — INFO — [EXTRACT] Clients : 2240 lignes extraites depuis C:\Users\Lenovo\Desktop\zili 1\safae\safae\mexora_etl\..\data\clients_mexora.csv
+2026-05-16 00:15:47,262 — INFO — [EXTRACT] Regions : 20 lignes extraites depuis C:\Users\Lenovo\Desktop\zili 1\safae\safae\mexora_etl\..\data\regions_maroc.csv
+2026-05-16 00:15:47,263 — INFO — --- PHASE TRANSFORM ---
+2026-05-16 00:15:47,302 — INFO — [TRANSFORM] R1 doublons : 2794 lignes supprimees (50009 -> 47215)
+2026-05-16 00:15:49,989 — INFO — [TRANSFORM] R2 dates : 0 dates invalides supprimees
+2026-05-16 00:15:50,145 — INFO — [TRANSFORM] R5 quantites : 218 lignes supprimees (quantite <= 0)
+2026-05-16 00:15:50,186 — INFO — [TRANSFORM] R6 prix : 136 commandes test supprimees (prix = 0)
+2026-05-16 00:15:50,194 — INFO — [TRANSFORM] R7 livreurs : 3244 valeurs manquantes remplacees par 'INCONNU'
+2026-05-16 00:15:50,204 — INFO — [TRANSFORM] Commandes : 50009 -> 46861 lignes (3148 supprimees au total)
+2026-05-16 00:15:50,220 — INFO — [TRANSFORM] R1 dedoublonnage : 42 clients dupliques supprimes (2240 -> 2198)
+2026-05-16 00:15:50,232 — INFO — [TRANSFORM] R3 ages : 119 dates de naissance invalides (age hors 16-100)
+2026-05-16 00:15:50,241 — INFO — [TRANSFORM] R4 emails : 216 emails mal formates mis a NULL
+2026-05-16 00:15:50,245 — INFO — [TRANSFORM] Clients : 2240 -> 2198 lignes (42 supprimees au total)
+2026-05-16 00:15:50,247 — INFO — [TRANSFORM] R1 categories : 5 variantes fusionnees (8 -> 3)
+2026-05-16 00:15:50,252 — INFO — [TRANSFORM] R2 prix : 1 prix catalogue NULL remplaces par mediane sous-categorie
+2026-05-16 00:15:50,255 — INFO — [TRANSFORM] Produits : 48 lignes, SCD Type 2 active
+2026-05-16 00:15:50,333 — INFO — [TRANSFORM] Dim temps : 2192 jours generees (2020-01-01 -> 2025-12-31)
+2026-05-16 00:15:50,337 — INFO — [TRANSFORM] Dim region : 20 regions creees
+2026-05-16 00:15:50,339 — INFO — [TRANSFORM] Dim produit : 48 versions (SCD Type 2)
+2026-05-16 00:15:50,345 — INFO — [TRANSFORM] Dim livreur : 51 livreurs creees
+2026-05-16 00:15:50,352 — INFO — [TRANSFORM] Segments : 306 clients segmentes
+2026-05-16 00:15:50,364 — INFO — [TRANSFORM] Dim client : 2198 clients (SCD Type 1)
+2026-05-16 00:15:51,316 — INFO — [TRANSFORM] Fait ventes : 46861 lignes construites
+2026-05-16 00:15:51,316 — INFO — --- PHASE LOAD ---
+2026-05-16 00:15:51,390 — ERROR — ERREUR PIPELINE : 'utf-8' codec can't decode byte 0xe9 in position 103: invalid continuation byte
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\Desktop\zili 1\safae\safae\mexora_etl\main.py", line 56, in run_pipeline
+    charger_dimension(dim_temps, "dim_temps")
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Lenovo\Desktop\zili 1\safae\safae\mexora_etl\load\loader.py", line 36, in charger_dimension
+    _ensure_schema(SCHEMA_DWH)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\Lenovo\Desktop\zili 1\safae\safae\mexora_etl\load\loader.py", line 25, in _ensure_schema
+    with engine.connect() as conn:
+         ~~~~~~~~~~~~~~^^
+  File "C:\Users\Lenovo\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\engine\base.py", line 3293, in connect
+    return self._connection_cls(self)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\Lenovo\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\engine\base.py", line 143, in __init__
+    self._dbapi_connection = engine.raw_connection()
+                             ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Lenovo\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\engine\base.py", line 3317, in raw_connection
+    return self.pool.connect()
+           ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Lenovo\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\pool\base.py", line 448, in connect
+    return _ConnectionFairy._checkout(self)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\Lenovo\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\pool\base.py", line 1272, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "C:\Users\Lenovo\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\pool\base.py", line 712, in checkout
+    rec = pool._do_get()
+  File "C:\Users\Lenovo\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\pool\impl.py", line 177, in _do_get
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Lenovo\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 121, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\Lenovo\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\pool\impl.py", line 175, in _do_get
+    return self._create_connection()
+           ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Lenovo\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\pool\base.py", line 389, in _create_connection
+    return _ConnectionRecord(self)
+  File "C:\Users\Lenovo\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\pool\base.py", line 674, in __init__
+    self.__connect()
+    ~~~~~~~~~~~~~~^^
+  File "C:\Users\Lenovo\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\pool\base.py", line 900, in __connect
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Lenovo\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 121, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\Lenovo\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\pool\base.py", line 896, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+                                         ~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\Lenovo\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\engine\create.py", line 667, in connect
+    return dialect.connect(*cargs_tup, **cparams)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Lenovo\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\engine\default.py", line 630, in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Lenovo\AppData\Local\Programs\Python\Python313\Lib\site-packages\psycopg2\__init__.py", line 135, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xe9 in position 103: invalid continuation byte
